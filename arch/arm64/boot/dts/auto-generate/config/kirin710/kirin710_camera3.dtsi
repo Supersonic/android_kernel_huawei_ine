@@ -1,0 +1,171 @@
+/*
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/ {
+	huawei_hisi_isp120: huawei,hisi_isp120 {
+		compatible = "huawei,hisi_isp120";
+		hisi,product_name = "kirin710";
+                hisi,is_fpga = <1>;
+
+                clocks = <&aclk_gate_isp>, <&aclk_gate_dss>, <&pclk_gate_dss>;
+                clock-names = "aclk_isp", "aclk_dss", "pclk_dss";
+
+		status = "ok";
+	};
+
+	hisi_hisi_camera: hisi,hisi_camera {
+	};
+
+	camera_module: camera_module {
+		compatible = "simple-bus";
+	};
+
+    histarisp: isp@e8400000 {
+        compatible = "hisilicon,isp";
+        reg = <0 0xFFF35000 0 0x1000>,
+              <0 0xE8400000 0 0x200000>,
+              <0 0xFFF31000 0 0x1000>,
+              <0 0xE8A09000 0 0x1000>,
+              <0 0xFFF0A000 0 0x1000>,
+              <0 0xE86D0000 0 0x1000>,
+              <0 0xEC050000 0 0x2000>,
+              <0 0xE8583000 0 0x1000>,
+              <0 0xE8580000 0 0x1000>;
+        interrupts = <0 272 4>;
+        reg-num = <9>;
+        status = "ok";
+        isp-clockdep-supply = <&isp_fake>;
+        isp-core-supply = <&ispsubsys>;
+        hisi,use_secisp = <1>;
+        sec-verify = <0>;
+
+        a7-vaddr-boot       = <0xFFFF0000 0x00010000 0x0000001D 0x00010000 0x00000001 0x0 0x0>;
+        a7-vaddr-text       = <0xC0000000 0x00400000 0x0000001D 0x00010000 0x00000001 0x0 0x0>;
+        a7-vaddr-data       = <0xC0400000 0x00800000 0x0000001B 0x00410000 0x00000001 0x0 0x0>;
+        a7-vaddr-pgd        = <0xC1000000 0x00002000 0x00000009 0x00000000 0x00000001 0x0 0x0>;
+        a7-vaddr-pmd        = <0xC1002000 0x00002000 0x00000009 0x00002000 0x00000001 0x0 0x0>;
+        a7-vaddr-pte        = <0xC1100000 0x00200000 0x00000009 0x00C10000 0x00000001 0x0 0x0>;
+        a7-vaddr-rdr        = <0xC1800000 0x00040000 0x00000013 0x00000000 0x00000001 0x0 0x0>;
+        a7-vaddr-shrd       = <0xC2000000 0x00001000 0x00000003 0x0000C000 0x00000001 0x00001000 0x00001000>;
+        a7-vaddr-vq         = <0xC2020000 0x00040000 0x00000003 0x00000000 0x00000001 0x0 0x0>;
+        a7-vaddr-vr0        = <0xC2060000 0x00004000 0x00000003 0x00000000 0x00000001 0x0 0x0>;
+        a7-vaddr-vr1        = <0xC2063000 0x00004000 0x00000003 0x00000000 0x00000001 0x0 0x0>;
+        a7-vaddr-heap       = <0xC4000000 0x01800000 0x0000001B 0x00000000 0x00000001 0x0 0x0>;
+        a7-vaddr-a7dyna     = <0xD4000000 0x0B000000 0x00000013 0x00000000 0x00000000 0x00003000 0x0B000000>;
+        atf-shrd        = <0x00000000 0x00020000>;
+
+        isp-remap-addr = <0x00000000>;
+        isp-ipc-addr = <0xC2020000>;
+        isp-iova-start = <0xC8000000>;
+        isp-iova-size = <0x9000000>;
+        isp-names = "ISPCPU";
+        firmware-names = "isp_fw.elf";
+        bootware-names = "isp_bw.elf";
+        mailbox-names = "isp_mailbox";
+        isp_local_timer = <19200000>;
+        ispa7-default-clk = <800000000>;
+        clock-num = <3>;
+        clocks = <&clk_gate_ispcpu>, <&clk_gate_ispfunc>, <&clk_gate_ispi2c>;
+        clock-names = "ispcpu", "ispfunc", "ispi2c";
+        clock-value = <960000000 480000000 109000000>;
+        clkdis-dvfs     = <406000000 271000000 109000000>;
+        isp_nosec_flag = <0x0>;
+        ispsmmu-init-byap = <0x1>;
+        isp-mdc-flag    = <0x0>;
+        isp-wdt-flag    = <0x0>;
+        isp-reset-flag  = <0x1>;
+        isppd-adb-flag  = <0x0>;
+        useisptop    = <0x00>;
+        useclockdep        = <0x1>;
+        usedvfs        = <0x0>;
+        usepowerdn_clockdn = <0x1>;
+        iommu_info{
+            start-addr = <0xc0000000>;
+            size = <0x3ffffc00>;
+        };
+    };
+
+    ispcma {
+        compatible = "hisilicon,isp-cma";
+        status = "ok";
+    };
+
+    isp_fastboot_cma {
+        compatible = "hisilicon,isp-fastboot-cma";
+        memory-region = <&fastboot_cma>;
+        status = "ok";
+    };
+
+    histarispsmmu: ispsmmu@e8406000 {
+        compatible = "hisilicon,smmu-irq";
+        reg = <0xe8406000 0x1000>;
+            isp-smmu-addr = <0xe8406000>;
+            isp-dss-addr = <0xe8608000>;
+        interrupts = <0 267 4>,<0 268 4>;
+        status = "ok";
+    };
+
+/* begin for hwcam arch  */
+
+	huawei,camcfgdev {
+			compatible = "huawei,camcfgdev";
+            huawei,binderized = <0>;
+			status = "ok";
+		};
+
+    huawei,hjpeg {
+        compatible = "huawei,hjpeg";
+        huawei,hjpeg-name = "hjpeg";
+        huawei,hjpeg-base = <0xE8405000 0x1000>;
+        huawei,smmu-base = <0xE8560000 0x1000>;
+        huawei,cvdr-base = <0xE842E000 0x1000>;
+        huawei,subctrl-base = <0xE8583700 0x4>;
+        huawei,chip_type = <0>;
+        huawei,smmu_bypass = <0>;
+        huawei,smmu_type = <0>;
+        huawei,power_control = <1>;
+        huawei,cvdr = <0 1 25>;
+        huawei,stream_id = <24 29 30>;
+        huawei,qos_update = <0>;
+        huawei,iova_update = <0>;
+        huawei,wr_port_addr_update = <0>;
+        huawei,hjpeg-base-flag = <0x00000200>;
+        huawei,hjpeg-irq = <266>;
+        huawei,hjpeg-irq-flag = <0x00000400>;
+        reg = <0 0xE8405000 0 0x1000>;
+        interrupts = <0 266 4>;
+        status = "ok";
+    };
+
+    huawei_scharger_flash: huawei,scharger_flash {
+        compatible = "huawei,scharger_flash";
+
+        huawei,flash-name = "scharger_flash";
+        huawei,flash-index = <0>;
+        huawei,flash-type = <0>;
+        huawei,slave-address = <0x67>;
+
+        pvdd-classd-supply = <&schg_boost3>;
+        flash-led-supply = <&schg_source1>;
+        torch-led-supply = <&schg_source2>;
+
+        huawei,flash_led_num = <16>;
+        huawei,flash_led = <125000 250000 375000 500000 625000 750000 875000 1000000 1125000 1250000 1375000 1500000 1500000 1500000 1500000 1500000>;
+        huawei,torch_led_num = <8>;
+        huawei,torch_led = <50000 100000 150000 200000 250000 300000 350000 400000>;
+
+        hisi,is_fpga = <0>;
+        huawei,audio_codec_mute_flag = <0>;
+        status = "disabled";
+    };
+
+};

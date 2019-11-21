@@ -1,0 +1,7 @@
+#
+# huawei touchscreen driver configuration
+#
+
+
+source "drivers/devkit/tpkit/3_0/panel/synaptics/Kconfig"
+source "drivers/devkit/tpkit/3_0/panel/samsung/Kconfig"

@@ -1,0 +1,202 @@
+/* MD5: 94f377e0325cde3f36b4d9766e35f0fa*/
+#if !defined(__PRODUCT_CONFIG_TLPHY_H__)
+#define __PRODUCT_CONFIG_TLPHY_H__
+
+#ifndef XTENSA_CORE
+#define XTENSA_CORE Atlanta_NX_SWUP 
+#endif 
+
+#ifndef XTENSA_SYSTEM
+#define XTENSA_SYSTEM "$(ROOT_XTENSA_PATH_W)/XtDevTools/install/builds/RH-2017.2.3-linux/$(CFG_XTENSA_CORE)/config" 
+#endif 
+
+#ifndef TENSILICA_BUILDS
+#define TENSILICA_BUILDS "$(ROOT_XTENSA_PATH_W)/XtDevTools/install/builds/RH-2017.2.3-linux" 
+#endif 
+
+#ifndef TENSILICA_TOOLS
+#define TENSILICA_TOOLS "$(ROOT_XTENSA_PATH_W)/XtDevTools/install/tools/RH-2017.2.3-linux" 
+#endif 
+
+#ifndef LPHY_DTCM_BASE
+#define LPHY_DTCM_BASE 0xE3400000 
+#endif 
+
+#ifndef LPHY_ITCM_BASE
+#define LPHY_ITCM_BASE 0xE3500000 
+#endif 
+
+#ifndef LPHY_DTCM_SIZE
+#define LPHY_DTCM_SIZE 0xC0000 
+#endif 
+
+#ifndef LPHY_ITCM_SIZE
+#define LPHY_ITCM_SIZE 0x60000 
+#endif 
+
+#ifndef LPHY_L2M_BASE
+#define LPHY_L2M_BASE 0xE3700000 
+#endif 
+
+#ifndef LPHY_L2M_SIZE
+#define LPHY_L2M_SIZE 0x80000 
+#endif 
+
+#ifndef LPHY_L2C_BASE
+#define LPHY_L2C_BASE 0xE3780000 
+#endif 
+
+#ifndef LPHY_L2C_SIZE
+#define LPHY_L2C_SIZE 0x80000 
+#endif 
+
+#ifndef LPHY_SRAM_BASE
+#define LPHY_SRAM_BASE 0x0 
+#endif 
+
+#ifndef LPHY_SRAM_SIZE
+#define LPHY_SRAM_SIZE 0x0 
+#endif 
+
+#ifndef LPHY_DDR_BASE
+#define LPHY_DDR_BASE ((DDR_TLPHY_IMAGE_ADDR)+0x10000) 
+#endif 
+
+#ifndef LPHY_DDR_SIZE
+#define LPHY_DDR_SIZE 0x600000 
+#endif 
+
+#ifndef LPHY_TOTAL_IMG_SIZE
+#define LPHY_TOTAL_IMG_SIZE ((LPHY_DTCM_SIZE)+(LPHY_ITCM_SIZE)+(LPHY_L2M_SIZE)+(LPHY_DDR_SIZE)) 
+#endif 
+
+#ifndef XTENSA_PREDICT_BUG
+#endif 
+
+#ifndef XTENSA_INST_PREFETCH_BUG
+#define XTENSA_INST_PREFETCH_BUG 
+#endif 
+
+#ifndef PHY_EXTERN_BOOT
+#define PHY_EXTERN_BOOT 
+#endif 
+
+#ifndef TL_PHY_ASIC
+#define TL_PHY_ASIC 
+#endif 
+
+#ifndef TL_PHY_V760
+#define TL_PHY_V760 
+#endif 
+
+#ifndef TL_PHY_HI6260
+#define TL_PHY_HI6260 
+#endif 
+
+#ifndef TL_PHY_BBE16_CACHE
+#endif 
+
+#ifndef TL_PHY_SUPPORT_DUAL_MODEM
+#define TL_PHY_SUPPORT_DUAL_MODEM 
+#endif 
+
+#ifndef TL_PHY_SUPPORT_IMAGE_HEADER
+#define TL_PHY_SUPPORT_IMAGE_HEADER 
+#endif 
+
+#ifndef FEATURE_LTE_4RX
+#define FEATURE_LTE_4RX FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_LTE_8RX
+#define FEATURE_LTE_8RX FEATURE_OFF 
+#endif 
+
+#ifndef MULTI_PHY_CO_PROCEDURE
+#define MULTI_PHY_CO_PROCEDURE 
+#endif 
+
+#ifndef MULTI_PHY_CO_PROCESSOR
+#define MULTI_PHY_CO_PROCESSOR 
+#endif 
+
+#ifndef BBPCONFIG_VERIOSN
+#define BBPCONFIG_VERIOSN bbp_config_hi6960 
+#endif 
+
+#ifndef TL_PHY_FEATURE_LTE_LCS
+#endif 
+
+#ifndef TLPHY_FEIC_ENABLE
+#define TLPHY_FEIC_ENABLE FEATURE_ON 
+#endif 
+
+#ifndef FEATURE_TLPHY_SINGLE_XO
+#define FEATURE_TLPHY_SINGLE_XO 
+#endif 
+
+#ifndef FEATURE_TLPHY_ET
+#define FEATURE_TLPHY_ET FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_TLPHY_NEWET
+#define FEATURE_TLPHY_NEWET FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_TLPHY_DPD
+#define FEATURE_TLPHY_DPD FEATURE_ON 
+#endif 
+
+#ifndef FEATURE_TLPHY_ETM_ONLY
+#define FEATURE_TLPHY_ETM_ONLY FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_TLPHY_DPD_OPT
+#define FEATURE_TLPHY_DPD_OPT FEATURE_ON 
+#endif 
+
+#ifndef TL_PHY_FEATURE_SCELL_USE_LISTEN
+#define TL_PHY_FEATURE_SCELL_USE_LISTEN 
+#endif 
+
+#ifndef TLPHY_DSDS_OPTIMIZE_ENABLE
+#define TLPHY_DSDS_OPTIMIZE_ENABLE 
+#endif 
+
+#ifndef FEATURE_TLPHY_WTC_SWTICH
+#define FEATURE_TLPHY_WTC_SWTICH FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_TLPHY_ANT_BLANK
+#define FEATURE_TLPHY_ANT_BLANK FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_TLPHY_HI6353_SUPPORT
+#define FEATURE_TLPHY_HI6353_SUPPORT FEATURE_ON 
+#endif 
+
+#ifndef FEATURE_TLPHY_HI6H03_SUPPORT
+#define FEATURE_TLPHY_HI6H03_SUPPORT FEATURE_ON 
+#endif 
+
+#ifndef FEATURE_TLPHY_MULTIBAND_TUNER
+#define FEATURE_TLPHY_MULTIBAND_TUNER FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_TLPHY_SAR_GROUP
+#define FEATURE_TLPHY_SAR_GROUP FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_LPHY_UL_AMPR_R14
+#define FEATURE_LPHY_UL_AMPR_R14 FEATURE_ON 
+#endif 
+
+#ifndef FEATURE_TLPHY_HITUNER_SWITCH
+#define FEATURE_TLPHY_HITUNER_SWITCH FEATURE_OFF 
+#endif 
+
+#ifndef FEATURE_TLPHY_HALL_SWITCH
+#define FEATURE_TLPHY_HALL_SWITCH FEATURE_OFF 
+#endif 
+
+#endif /*__PRODUCT_CONFIG_H__*/ 
